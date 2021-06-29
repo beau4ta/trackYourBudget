@@ -1,9 +1,10 @@
 const FILES_TO_CACHE = [
    "/",
    "/index.html",
-   "inddex.js",
+   "/index.js",
    "/db.js",
-   '/styles.css'
+   '/styles.css',
+   '/manifest.json'
   ];
   
   const PRECACHE = 'precache-v1';
@@ -48,12 +49,14 @@ const FILES_TO_CACHE = [
   
           return caches.open(RUNTIME).then((cache) => {
             return fetch(event.request).then((response) => {
-              return cache.put(event.request, response.clone()).then(() => {
+              return cache.put(event.request.url, response.clone()).then(() => {
                 return response;
               });
+            }).catch(err => {
+              cache.match(event.request);
             });
           });
-        })
+        }).catch(err => console.log(err))
       );
     }
   });

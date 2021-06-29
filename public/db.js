@@ -23,6 +23,8 @@ request.onerror = (e) => {
 };
 
 const checkDB = () => {
+    db = request.result;
+
     console.log("Checking Database!");
 
     //open transaction
@@ -49,14 +51,14 @@ const checkDB = () => {
               // If our returned response is not empty
               if (res.length !== 0) {
                 // Open another transaction to BudgetStore with the ability to read and write
-                transaction = db.transaction(['BudgetStore'], 'readwrite');
+                transaction = db.transaction(['budgetStore'], 'readwrite');
     
                 // Assign the current store to a variable
-                const currentStore = transaction.objectStore('BudgetStore');
+                const currentStore = transaction.objectStore('budgetStore');
     
                 // Clear existing entries because our bulk add was successful
                 currentStore.clear();
-                console.log('Clearing store 🧹');
+                console.log('Clearing store');
               }
             });
         }
@@ -64,6 +66,8 @@ const checkDB = () => {
 };
 
 const saveRecord = (record) => {
+    db = request.result;
+
     console.log('Record saved!');
 
     const transaction = db.transaction(['budgetStore'], 'readwrite');
