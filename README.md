@@ -39,7 +39,7 @@ SO THAT my account balance is accurate when I am traveling
   
   Email me with any questions: beaufortier13@gmail.com
 
-  Link to the deployed application: 
+  Link to the deployed application: https://morning-shelf-90642.herokuapp.com/
 
   <img src="assets/budgetSS.png">
   
